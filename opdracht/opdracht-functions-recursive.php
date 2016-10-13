@@ -4,23 +4,22 @@ $rentevoet =1.08;
 $verplicht_aantal_jaren=10;
 $teller=0;
 
-function Hans_geld_berekenen(){
-	global $bedrag;
-	global $rentevoet;
-	global $verplicht_aantal_jaren;
-	global $teller;
+
+function Hans_geld_berekenen($bedrag,$rentevoet,$verplicht_aantal_jaren,$teller ){
 
 	
-$bedrag=$bedrag*$rentevoet;
+
 	if($verplicht_aantal_jaren < $teller){
 		$teller++;
-		return $teller." ".$bedrag;		
+	$bedrag*=$rentevoet;
+		
 
-		Hans_geld_berekenen();
+echo Hans_geld_berekenen($bedrag,$rentevoet,$verplicht_aantal_jaren,$teller );
 		
 	}
 	
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -29,6 +28,6 @@ $bedrag=$bedrag*$rentevoet;
 <title>Page Title</title>
 </head>
 <body>
-
+<?php Hans_geld_berekenen($bedrag,$rentevoet,$verplicht_aantal_jaren,$teller ); ?>
 </body>
 </html>
