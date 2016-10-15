@@ -77,7 +77,7 @@ if (array_key_exists('id', $_GET)) {
 		<?php endif ?>
 		
 		
-				 <a href="opdracht-get.php?id=<?php echo $row ?>" ><p><?php if($is_valid): ?>
+				 <a href="1-opdracht-get.php?id=<?php echo $row ?>" ><p><?php if($is_valid): ?>
 		<p><?php echo substr( $value['lees'], 0, 0 ) ?></p>
 		<?php else : ?>
 		<p><?php echo $value['lees'] ?>...</p>
