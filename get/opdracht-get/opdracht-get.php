@@ -25,19 +25,19 @@ The VidyaGyan Leadership Academy, a boarding school in India's Uttar Pradesh sta
 	 'lees' =>"lees meer",
 ),);
 	
-$individueelArtikel=false;
-$nietBestaandArtikel=false;
+$is_valid=false;
+$is_niet_valid=false;
 
 if (array_key_exists('id', $_GET)) {
     $id= $_GET['id'];
 	if ( array_key_exists( $id , $artikels ) )
 		{
 			$artikels 			= 	array( $artikels[$id] );
-			$individueelArtikel	=	true;
+			$is_valid	=	true;
 		}
 		else
 		{
-			$nietBestaandArtikel	=	true;
+			$is_niet_valid	=	true;
 		}	
 }
 ?>
@@ -70,14 +70,14 @@ if (array_key_exists('id', $_GET)) {
 
      <img src= <?php echo 'img/' . $value['afbeelding']; ?> alt= <?= $value['afbeeldingBeschrijving'] ; ?>
 	<p> <?=  $value['afbeeldingBeschrijving']; ?> 	</p>
-		<?php if(!$individueelArtikel): ?>
+		<?php if(!$is_valid): ?>
 		<p><?php echo substr( $value['inhoud'], 0, 50 ) ?>...</p>
 		<?php else : ?>
 		<p><?php echo $value['inhoud'] ?></p>
 		<?php endif ?>
 		
 		
-				 <a href="opdracht-get.php?id=<?php echo $row ?>" ><p><?php if($individueelArtikel): ?>
+				 <a href="opdracht-get.php?id=<?php echo $row ?>" ><p><?php if($is_valid): ?>
 		<p><?php echo substr( $value['lees'], 0, 0 ) ?></p>
 		<?php else : ?>
 		<p><?php echo $value['lees'] ?>...</p>
