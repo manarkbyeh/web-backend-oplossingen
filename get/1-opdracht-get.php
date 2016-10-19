@@ -47,33 +47,76 @@ if (array_key_exists('id', $_GET)) {
 <head>
 <style>
 	.artikels{
-		width: 200px;
-		display: inline-block;
-		float: left;
 		
+		width:	1024px;
+			margin:	0 auto;
 	}
 	
-	img{
-		width: 200px;
-		
+	img
+		{
+			max-width: 100%;
+		}
+	.img_tonen{
+		max-width: 40%;
 	}
+	.titel_tonen{
+		 width: 500px;
+		 margin-bottom: 10px;
+            padding: 10px;
+		background-color:#EEEEEE;
+           
+	}
+	.artikel_tonen{
+		background-color:#EEEEEE;
+		
+	}   
+	.multiple
+		{
+			float:left;
+			width:288px;
+			margin:16px;
+			padding:16px;
+			box-sizing:border-box;
+			background-color:#EEEEEE;
+		}
+
+		.multiple:nth-child(3n+1)
+		{
+			margin-left:0px;
+		}
+
+		.multiple:nth-child(3n)
+		{
+			margin-right:0px;
+		}
+
+		.single img
+		{
+			float:right;
+			margin-left: 16px;
+		}
+
+	
 	
 	</style>
 
 </head>
 <body>
-	<div class="artikels">
+	
 
-<?php foreach ($artikels as $row => $value): ?>
-		<div class="artikels">
-   <h1> <?= $value['titel']; ?> </h1>
 
-     <img src= <?php echo 'img/' . $value['afbeelding']; ?> alt= <?= $value['afbeeldingBeschrijving'] ; ?>
+<?php  foreach ($artikels as $row => $value): ?>
+		<article class="<?php echo ( !$is_valid ) ? 'multiple': 'single' ; ?>">
+
+   <h1 class="titel_tonen<?php echo ($value == $id) ? " titel_tonen" : ""?>"> <?= $value['titel']; ?> </h1>
+	 
+
+   <div class="img_tonen<?php echo ($value == $id) ? " img_tonen" : ""?>"> <img src= <?php echo 'img/' . $value['afbeelding']; ?> alt= <?= $value['afbeeldingBeschrijving'] ; ?></div>
 	<p> <?=  $value['afbeeldingBeschrijving']; ?> 	</p>
 		<?php if(!$is_valid): ?>
 		<p><?php echo substr( $value['inhoud'], 0, 50 ) ?>...</p>
 		<?php else : ?>
-		<p><?php echo $value['inhoud'] ?></p>
+		<p class="artikel_tonen<?php echo ($value == $id) ? " artikel_tonen" : ""?>"><?php echo $value['inhoud'] ?></p>
 		<?php endif ?>
 		
 		
@@ -84,7 +127,7 @@ if (array_key_exists('id', $_GET)) {
 		<?php endif ?></p></a>
 		
 			</div>
-	
+</article>
 	<?php endforeach ?>
 
 
