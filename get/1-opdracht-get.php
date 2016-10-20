@@ -63,38 +63,24 @@ if (array_key_exists('id', $_GET)) {
 		 width: 500px;
 		 margin-bottom: 10px;
             padding: 10px;
-		background-color:#EEEEEE;
+		background-color:azure;
            
 	}
 	.artikel_tonen{
-		background-color:#EEEEEE;
+		background-color:azure;
 		
 	}   
-	.multiple
+	.mijn_artikel
 		{
 			float:left;
-			width:288px;
+			width:400px;
 			margin:16px;
 			padding:16px;
 			box-sizing:border-box;
-			background-color:#EEEEEE;
+			background-color:azure;
 		}
 
-		.multiple:nth-child(3n+1)
-		{
-			margin-left:0px;
-		}
-
-		.multiple:nth-child(3n)
-		{
-			margin-right:0px;
-		}
-
-		.single img
-		{
-			float:right;
-			margin-left: 16px;
-		}
+		
 
 	
 	
@@ -106,7 +92,7 @@ if (array_key_exists('id', $_GET)) {
 
 
 <?php  foreach ($artikels as $row => $value): ?>
-		<article class="<?php echo ( !$is_valid ) ? 'multiple': 'single' ; ?>">
+		<article class="<?php echo ( !$is_valid ) ? 'mijn_artikel': '' ; ?>">
 
    <h1 class="titel_tonen<?php echo ($value == $id) ? " titel_tonen" : ""?>"> <?= $value['titel']; ?> </h1>
 	 
@@ -117,6 +103,8 @@ if (array_key_exists('id', $_GET)) {
 		<p><?php echo substr( $value['inhoud'], 0, 50 ) ?>...</p>
 		<?php else : ?>
 		<p class="artikel_tonen<?php echo ($value == $id) ? " artikel_tonen" : ""?>"><?php echo $value['inhoud'] ?></p>
+	   	
+		
 		<?php endif ?>
 		
 		
