@@ -35,10 +35,7 @@ if (array_key_exists('id', $_GET)) {
 			$artikels 			= 	array( $artikels[$id] );
 			$is_valid	=	true;
 		}
-		else
-		{
-			$is_niet_valid	=	true;
-		}	
+			
 }
 ?>
 
@@ -117,6 +114,7 @@ if (array_key_exists('id', $_GET)) {
 			</div>
 </article>
 	<?php endforeach ?>
+	
 
 
 </body>
