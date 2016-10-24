@@ -6,7 +6,7 @@ $Name=$_POST['name'];
 $nick_name=$_POST['nickename'];
 if(isset($_POST['verzenden'])){
 	if(empty($Name) and empty($nick_name)){
-		 $message='vul de input in aub';
+		 $message='vul de veld in';
 	}else{
 		$_SESSION['name']=$Name;
 		$_SESSION['nickename']=$nick_name;
