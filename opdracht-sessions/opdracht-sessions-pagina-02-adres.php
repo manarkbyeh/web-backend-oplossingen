@@ -1,8 +1,11 @@
 <?php 
-$straat=$_POST['straat'];
-$nummer=$_POST['nummer'];
-$gemeente=$_POST['gemeente'];
-$postcode=$_POST['postcode'];
+
+session_start();
+
+$straat_v=$_SESSION['straat_v'];
+$nummer_v=$_SESSION['nummer_v'];
+$gemeente_v=$_SESSION['gemeente_v'];
+$postcode_v=$_SESSION['postcode_v'];
 
 if(isset($_POST['verzenden'])){
 	if(empty($straat) and empty($nummer) and empty($gemeente) and empty($postcode)){
@@ -14,21 +17,38 @@ if(isset($_POST['verzenden'])){
 		$_SESSION['postcode_v']=$nummer;
 	}
 }
-$straat_v=$_SESSION['straat_v'];
-$nummer_v=$_SESSION['nummer_v'];
-$gemeente_v=$_SESSION['gemeente_v'];
-$postcode_v=$_SESSION['postcode_v'];
-
-
+ 
 ?>
 <html>
-<body>
+<head>
+
+<script language="javascript">
+function setFocus()
+{	
+	var field = document.getElementById(getParameterByName('edit')).focus();
+	field.focus();
+}
+
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+</script>
+
+</head>
+<body onload="setFocus()">
 
 <form action="overzichtspagina.php" method="post">
-straat: <input type="text" name="straat" value="
-	<?php 
-	if($straat_v==""){
-		echo("0");
+straat: <input type="text" id="straat" name="straat" value="<?php 
+	if($straat_v==''){
+		echo("Leeg");
 	}else{
 		echo($straat_v);
 	}
@@ -36,10 +56,9 @@ straat: <input type="text" name="straat" value="
 
 	?>
 	"><br>
-nummer: <input type="text" name="nummer" value="
-	<?php 
+nummer: <input type="text" id="nummer" name="nummer" value="<?php 
 	if($nummer_v==""){
-		echo("0");
+		echo("Leeg");
 	}else{
 		echo($nummer_v);
 	}
@@ -48,10 +67,9 @@ nummer: <input type="text" name="nummer" value="
 	?>
 	
 	"><br>
-gemeente: <input type="text" name="gemeente"  value="
-	<?php 
+gemeente: <input type="text" id="gemeente" name="gemeente"  value="<?php 
 	if($gemeente_v==""){
-		echo("0");
+		echo("Leeg");
 	}else{
 		echo($gemeente_v);
 	}
@@ -59,10 +77,9 @@ gemeente: <input type="text" name="gemeente"  value="
 
 	?>
 	"><br>
-postcode: <input type="text" name="postcode" value="
-		<?php 
+postcode: <input type="text" id="postcode" name="postcode" value="<?php 
 	if($postcode_v==""){
-		echo("0");
+		echo("Leeg");
 	}else{
 		echo($postcode_v);
 	}
