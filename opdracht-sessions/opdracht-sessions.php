@@ -1,33 +1,39 @@
-<?php 
-	session_start();
-$message='';
+<?php
+session_start();
+print_r(@$_SESSION['data']);
 
-$Name=$_POST['name'];
-$nick_name=$_POST['nickename'];
-if(isset($_POST['verzenden'])){
-	if(empty($Name) and empty($nick_name)){
-		 $message='vul de veld in';
-	}else{
-		$_SESSION['name']=$Name;
-		$_SESSION['nickename']=$nick_name;
-	}
+if(isset($_GET['action']) && $_GET['action'] == "reset"){
+    session_destroy();
+    header("location :opdracht-sessions.php");
+    exit();
 }
-$name=$_SESSION['name'];
-$Nicke_name=$_SESSION['nickename'];
 
+$email ="";
+$name = "";
 
+if(isset($_GET['focus'])):
+  $focus = $_GET['focus'];
+    if($focus == "email")
+      $email ="autofocus";
+      else if($focus == "name")
+       $name ="autofocus";
+endif;
 ?>
 
 
-<html>
-<body>
-<h>Deel 1: registratiegegevens</h>
-<form action="opdracht-sessions-pagina-02-adres.php" method="post">
-Name: <input type="email" name="name"><br>
-Nickename: <input type="text" name="nickename"><br>
-<input type="submit" value="verzenden" name="verzenden">
-</form>
-<?php echo $message ?>
-	<?php echo $name ?><?php echo $Nicke_name ?>
-</body>
-</html>
+  <html>
+
+  <body>
+    <h>Deel 1: registratiegegevens</h></br>
+    <a href="opdracht-sessions.php?action=reset">Reset sessie voor testdoeleinden.</a><br>
+    <form action="opdracht-sessions-pagina-02-adres.php" method="post">
+      email:
+      <input type="text" name="email" value="<?php echo @$_SESSION['data']['deel1']['name']; ?>" <?php echo @$email; ?> />
+      <br> Nickename:
+      <input type="text" name="name" value="<?php echo @$_SESSION['data']['deel1']['name']; ?>" <?php echo @$name ?> />
+      <br>
+      <input type="submit" value="verzenden" name="verzenden">
+    </form>
+  </body>
+
+  </html>

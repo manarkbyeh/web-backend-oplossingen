@@ -1,94 +1,70 @@
-<?php 
+<?php
 
 session_start();
 
-$straat_v=$_SESSION['straat_v'];
-$nummer_v=$_SESSION['nummer_v'];
-$gemeente_v=$_SESSION['gemeente_v'];
-$postcode_v=$_SESSION['postcode_v'];
-
-if(isset($_POST['verzenden'])){
-	if(empty($straat) and empty($nummer) and empty($gemeente) and empty($postcode)){
-		 $message='vul de input in aub';
-	}else{
-		$_SESSION['straat_v']=$straat;
-		$_SESSION['nummer_v']=$nummer;
-		$_SESSION['gemeente_v']=$gemeente;
-		$_SESSION['postcode_v']=$nummer;
-	}
-}
- 
-?>
-<html>
-<head>
-
-<script language="javascript">
-function setFocus()
-{	
-	var field = document.getElementById(getParameterByName('edit')).focus();
-	field.focus();
+if(isset($_GET['action']) && $_GET['action'] == "reset"){
+    session_destroy();
+    header("location : opdracht-sessions-pagina-02-adres.php.php");
+    exit();
 }
 
-function getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
+
+/*if(isset($_SESSION['data']){
+    $_SESSION['data'] = array(
+
+    );
+}*/
+
+
+$_SESSION['data']['deel1']['name'] = @$_POST['name'];
+$_SESSION['data']['deel1']['email'] = @$_POST['email'];
+$straat = "";
+$nummer ="";
+$gemeente="";
+$postcode="";
+
+print_r(@$_SESSION['data']);
+
+if(isset($_GET['focus'])){
+    switch ($_GET['focus']) {
+        
+        case 'straat':
+            $straat="autofocus";
+            break;
+        case 'nummer':
+            $nummer="autofocus";
+            break;
+        case 'gemeente':
+            $gemeente="autofocus";
+            break;
+        case 'postcode':
+            $postcode="autofocus";
     }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-</script>
+?>
+  <html>
 
-</head>
-<body onload="setFocus()">
+  <head>
 
-<form action="overzichtspagina.php" method="post">
-straat: <input type="text" id="straat" name="straat" value="<?php 
-	if($straat_v==''){
-		echo("Leeg");
-	}else{
-		echo($straat_v);
-	}
-	
 
-	?>
-	"><br>
-nummer: <input type="text" id="nummer" name="nummer" value="<?php 
-	if($nummer_v==""){
-		echo("Leeg");
-	}else{
-		echo($nummer_v);
-	}
-	
+  </head>
 
-	?>
-	
-	"><br>
-gemeente: <input type="text" id="gemeente" name="gemeente"  value="<?php 
-	if($gemeente_v==""){
-		echo("Leeg");
-	}else{
-		echo($gemeente_v);
-	}
-	
+  <body>
+    </br>
+    <a href="opdracht-sessions-pagina-02-adres.php?action=reset">Reset sessie voor testdoeleinden.</a>
+    <br>
+    <form action="overzichtspagina.php" method="post">
+      straat:
+      <input type="text" id="straat" name="straat" value="<?php  echo @$_SESSION['data']['deel2']['straat']; ?>" <?=@ $straat; ?> />
+      <br> nummer:
+      <input type="text" id="nummer" name="nummer" value="<?php  echo @$_SESSION['data']['deel2']['nummer']; ?>" <?=@ $nummer; ?> />
+      <br> gemeente:
+      <input type="text" id="gemeente" name="gemeente" value="<?php  echo @$_SESSION['data']['deel2']['gemeente']; ?>" <?=@ $gemeente; ?> />
+      <br> postcode:
+      <input type="text" id="postcode" name="postcode" value="<?php  echo @$_SESSION['data']['deel2']['postcode']; ?>" <?=@ $postcode; ?> />
+      <br>
+      <input type="submit" name="verzenden" value="verzenden">
+    </form>
+  </body>
 
-	?>
-	"><br>
-postcode: <input type="text" id="postcode" name="postcode" value="<?php 
-	if($postcode_v==""){
-		echo("Leeg");
-	}else{
-		echo($postcode_v);
-	}
-	
-
-	?>
-	"><br>
-<input type="submit" name="verzenden" value="verzenden">
-</form>
-
-</body>
-</html>
+  </html>
