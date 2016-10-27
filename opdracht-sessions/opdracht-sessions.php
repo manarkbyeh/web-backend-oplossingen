@@ -28,7 +28,7 @@ endif;
     <a href="opdracht-sessions.php?action=reset">Reset sessie voor testdoeleinden.</a><br>
     <form action="opdracht-sessions-pagina-02-adres.php" method="post">
       email:
-      <input type="text" name="email" value="<?php echo @$_SESSION['data']['deel1']['name']; ?>" <?php echo @$email; ?> />
+      <input type="text" name="email" value="<?php echo @$_SESSION['data']['deel1']['email']; ?>" <?php echo @$email; ?> />
       <br> Nickename:
       <input type="text" name="name" value="<?php echo @$_SESSION['data']['deel1']['name']; ?>" <?php echo @$name ?> />
       <br>

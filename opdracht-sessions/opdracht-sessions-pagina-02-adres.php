@@ -9,15 +9,13 @@ if(isset($_GET['action']) && $_GET['action'] == "reset"){
 }
 
 
-/*if(isset($_SESSION['data']){
-    $_SESSION['data'] = array(
 
-    );
-}*/
+If(isset($_POST['verzenden'])){
+    $_SESSION['data']['deel1']['name'] = @$_POST['name'];
+    $_SESSION['data']['deel1']['email'] = @$_POST['email'];  
+}
 
 
-$_SESSION['data']['deel1']['name'] = @$_POST['name'];
-$_SESSION['data']['deel1']['email'] = @$_POST['email'];
 $straat = "";
 $nummer ="";
 $gemeente="";
