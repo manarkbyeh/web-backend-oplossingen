@@ -13,6 +13,8 @@ function __autoload($class){
 }
 spl_autoload_register("__autoload");
 $message_instantie = new message();
+
+
 try{
     if(isset($_POST["submit"]))
     {
@@ -24,16 +26,16 @@ try{
             }
             else
             {
-                throw new Exception ("VALIDATION-CODE-LENGTH");
+                throw new ExceptionImproved(array("VALIDATION-CODE-LENGTH"));
             }
         }
         else
         {
-            throw new Exception ("SUBMIT-ERROR");
+            throw new  ExceptionImproved(array("SUBMIT-ERROR"));
         }
     }
 }
-catch(Exception $e){
+catch( ExceptionImproved $e){
     $messageCode=$e->getMessage();
     $message = array();
     $createMessage = false;
@@ -86,7 +88,9 @@ function logToFile(  $message){
 
   <head>
     <title>Oplossing Error Handling</title>
-  
+    <style>
+ 
+    </style>
   </head>
 
   <body>
@@ -98,7 +102,7 @@ function logToFile(  $message){
 
 
 if( $message_instantie->getMessage() !== null):
- echo "jkdsjkkjkdsjk";
+// echo "jkdsjkkjkdsjk";
 echo $my_message["text"];
 endif ?>
 
