@@ -15,9 +15,9 @@
 						  "tags" => array("minecraft", "military", "camo"),
 						  ),
 				);
-include 'header-partial.html';
-include 'body-partial.html';
-include 'footer-partial.html';
+include 'VIEW/header-partial.html';
+include 'VIEW/body-partial.html';
+include 'VIEW/footer-partial.html';
 
 
 

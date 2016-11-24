@@ -11,7 +11,7 @@ try{
         {
             if(strlen($_POST["code"]) == $controle_code)
             {
-                $isValid = true;
+                $is_valid = true;
             }
             else
             {
@@ -96,22 +96,22 @@ function showMessage(){
 
   <body>
     <h1>Geef uw kortingscode op</h1>
-    <?php if($is_valid): ?>
-      <?php echo "jkdsjkkjkdsjk" ?>
+<?php if($is_valid):
+    //   echo "jkdsjkkjkdsjk"; ?>
         <p>Korting toegekend!</p>
-        <?php else : ?>
-          <?php if(isset($message_error['type'])): ?>
-            <?=  $message_error['text']; ?>
+<?php endif;
+if(isset($message_error['type'])) : 
+    echo $message_error['message']; 
 
-              <?php endif ?>
+endif ?>
+     
                 <form action="" method="POST">
                   <label for="code">Kortingscode:</label>
                   <input type="text" name="code">
                   <br>
                   <button type="submit" name="submit">Verzenden</button>
                 </form>
-                <?php endif ?>
-
+               
   </body>
 
   </html>

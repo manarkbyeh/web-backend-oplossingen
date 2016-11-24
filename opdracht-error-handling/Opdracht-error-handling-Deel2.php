@@ -20,7 +20,7 @@ try{
         {
             if(strlen($_POST["code"]) == $controle_code)
             {
-                $isValid = true;
+                $is_valid = true;
             }
             else
             {
@@ -37,7 +37,7 @@ catch(Exception $e){
     $messageCode=$e->getMessage();
     $message = array();
     $createMessage = false;
- 
+    
     switch ($messageCode) {
         
         case 'SUBMIT-ERROR':
@@ -55,11 +55,12 @@ catch(Exception $e){
             break;
 }
 logToFile(  $message);
-   if(  $createMessage){
-        $message_instantie->setMessage($message);
-        
-    }
-     $message_instantie->getMessage($message);
+if(  $createMessage){
+    $message_instantie->setMessage(   $message);
+    
+}
+$my_message=    $message_instantie->getMessage();
+
 }
 
 
@@ -94,29 +95,29 @@ function logToFile(  $message){
 
   <body>
     <h1>Geef uw kortingscode op</h1>
-    <?php if($is_valid): ?>
-      <?php echo "jkdsjkkjkdsjk" ?>
-        <p>Korting toegekend!</p>
-        <?php endif; ?>
-          <?php if(!$is_valid): ?>
+    <?php if($is_valid):
+//   echo "jkdsjkkjkdsjk"; ?>
+      <p>Korting toegekend!</p>
+      <?php endif;
 
-            <form action=" " method="POST">
 
-              <?php if(null !== $message_instantie->setMessage()): ?>
-             
-   <?php echo "jkdsjkkjkdsjk" ?>
-                  <?=   $message_instantie->getMessage($message); ?>
+if( $message_instantie->getMessage() !== null):
+ echo "jkdsjkkjkdsjk";
+echo $my_message["text"];
+endif ?>
 
-                    <?php endif; ?>
+        <form action=" " method="POST">
 
-                      <label for="code">Kortingscode:</label>
-                      <input type="text" name="code">
-                      <br>
 
-                      <button type="submit" name="submit">Verzenden</button>
-            </form>
-            <?php endif ?>
-            
+
+          <label for="code">Kortingscode:</label>
+          <input type="text" name="code">
+          <br>
+
+          <button type="submit" name="submit">Verzenden</button>
+        </form>
+
+
 
 
   </body>
