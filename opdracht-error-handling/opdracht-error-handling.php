@@ -99,11 +99,13 @@ function showMessage(){
 <?php if($is_valid):
     //   echo "jkdsjkkjkdsjk"; ?>
         <p>Korting toegekend!</p>
-<?php endif;
-if(isset($message_error['type'])) : 
-    echo $message_error['message']; 
+<?php endif ?>
 
-endif ?>
+
+<?php if(isset($message_error['type'])): ?>
+    <?= $message_error['text'] ?> 
+
+<?php endif ?>
      
                 <form action="" method="POST">
                   <label for="code">Kortingscode:</label>

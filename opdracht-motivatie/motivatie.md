@@ -17,13 +17,13 @@ En denk er aan, blijven volharden! Het groene vinkje is in zicht.
 
 Neem deze tekst over in je eigen document en schrijf onder deze tekst wat hierboven werd gevraagd.
 
-<h1>Waarom ik voor MT heb gekozen</h1>
+<h1> Kbyeh Manar Waarom ik voor MT heb gekozen</h1>
 
-<h2> Omdat ik in de secondaire school webdesign heb gevolgd  , heb wat 'gehopt' van studierichting naar studierichting tot ik hier ben geraakt. Toegepaste informatica was niet direct mijn ding en ik vond ook dat ik me meer aangetrokken voelde aan web-dev. </h2>
-<h2> Nu dat ik in MT zit voel ik me helemaal op mijn plek, ik heb geen echte probleem vakken en verlies ook niet de motivatie om naar school te komen en mijn werk te doen, wat vooraf wel een probleem was! </h2>
+<h2> Ik heb altijd al een passie gehad voor computers. Ik hoop mijn computervaardigheden te verbeteren en tools en competenties mee te krijgen voor de beroepspraktijk. </h2>
+<h2> Ik deed al veel kennis en vaardigheden op betreffende tal van computerprogramma's. Mijn computerkennis reikt al veel verder dan twee jaar geleden. De cursussen hebben me al goed gewapend voor mijn toekomstige job.</h2>
 <h1>Feedback voor de cursus web backend </h1>
 <h1>**Sterk** </h1>
-<h2>De cursus en opdrachten zen zeer leervol, het is een zeer goede zelf-studie cursus met voldoende uitdagingen en voorbeelden. </h2>
+<h2>De vele opdrachten dragen bij tot persoonlijke groei op gebied van vaardigheden en kennis. </h2>
 <h1>**Verbetering**</h1>
-<h2>Eventueel groepjes kunnen maken. Dit is wel een persoonlijke voorkeur, ik weet van mezelf dat ik een pak rapper iets leer als ik het met iemand anders doe (die ik meestal ken).</h2>
+<h2> Ik heb persoonlijk wat meer baat aan inleidende informatie aangaande opdrachten. Ik zou op die manier beter kunnen starten aan een opdracht.</h2>
 <p>This is a paragraph.</p>

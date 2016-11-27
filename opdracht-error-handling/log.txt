@@ -139,4 +139,11 @@
  
 [10:52:30 24/11/2016] 127.0.0.1 error De kortingscode heeft niet de juiste lengte 
  
-
+[14:40:12 24/11/2016] 127.0.0.1 error De kortingscode heeft niet de juiste lengte 
+ 
+[14:42:54 24/11/2016] 127.0.0.1 error De kortingscode heeft niet de juiste lengte 
+ 
+[14:43:02 24/11/2016] 127.0.0.1 error De kortingscode heeft niet de juiste lengte 
+ 
+[14:43:10 24/11/2016] 127.0.0.1 error De kortingscode heeft niet de juiste lengte 
+ 
