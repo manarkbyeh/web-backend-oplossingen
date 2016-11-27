@@ -23,6 +23,7 @@
 		{
 			$fetchAssoc[]	=	$row;
 		}
+		   
 	}
 	catch ( PDOException $e )
 	{
