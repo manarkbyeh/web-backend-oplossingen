@@ -86,14 +86,14 @@ catch ( PDOException $e )
         <table>
           <thead>
           <th>nr</th>
-            <?php foreach ($fetchAssoc[0] as $key => $value): ?>
+            <?php foreach ($fetch_bier[0] as $key => $value): ?>
               <th>
                 <?=$key ?>
               </th>
               <?php endforeach ?>
           </thead>
           <tbody>
-            <?php foreach ($fetchAssoc as $key => $value) : ?>
+            <?php foreach ($fetch_bier as $key => $value) : ?>
               <tr class="<?php echo ($key%2) ? 'even' : 'odd' ?>">
                 <td>
                   <?= $teller++ ?>
