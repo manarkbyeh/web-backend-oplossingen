@@ -4,6 +4,7 @@ $teller=1;
 $Message_d="";
 
 
+
 try
 {
     
@@ -22,27 +23,30 @@ try
     $statement->execute();
     
     $fetchAssoc = array();
-
+    
     
     while ( $row = $statement->fetch(PDO::FETCH_ASSOC) )
     {
         $fetchAssoc[]	=	$row;
     }
     if(isset($_POST['delete'])){
-        $sql2 = "DELETE FROM brouwers
-        WHERE brouwernr  = :brouwernr";
-        
-        
-        $Statement_d = $db->prepare($sql2 );
-        $Statement_d->bindValue("brouwernr", $_POST["delete"]);
-        $check=$Statement_d->execute();
-        if( $check ){
-            $Message_d = "de rij die wilt verwijderen is verwijdert.";
-        }else{
-            $Message_d = "de rij die wilt verwijderen kan niet verwijdert worden.";
-        }
-        
+        $_POST['delete'];
+}
+    if(isset($_POST['ja'])){
+    $sql2 = "DELETE FROM brouwers
+    WHERE brouwernr  = :brouwernr";
+    
+    
+    $Statement_d = $db->prepare($sql2 );
+    $Statement_d->bindValue("brouwernr", $_POST['ja']);
+    $check=$Statement_d->execute();
+    if( $check ){
+        $Message_d = "de rij die wilt verwijderen is verwijdert.";
+    }else{
+        $Message_d = "de rij die wilt verwijderen kan niet verwijdert worden.";
     }
+    
+}
 }
 catch ( PDOException $e )
 {
@@ -77,39 +81,45 @@ catch ( PDOException $e )
       <p>
         <?php echo   $Message_d ?>
       </p>
-
-      <table>
-        <thead>
-          <th> nr </th>
-          <?php foreach ($fetchAssoc[0] as $key => $value): ?>
-            <th>
-              <?=$key ?>
-            </th>
-            <?php endforeach ?>
-              <th>delete</th>
-        </thead>
-        <tbody>
-          <?php foreach ($fetchAssoc as $key => $value) : ?>
-            <tr class="<?php echo ($key%2) ? 'even' : 'odd' ?>">
-              <td>
-                <?= $teller++ ?>
-              </td>
-              <?php foreach($value as $row): ?>
-                <td>
-                  <?= $row ?>
-                </td>
-
-
-                <?php endforeach?>
+      <?php if(isset($_POST["delete"])): ?>
+        <form action=" " method="post">
+          <p>Ben je zeker dat je deze rij wilt verwijderen ?</p>
+          <button name="ja" value="<?=  $_POST['delete'] ?>">Ja</button>
+          <button name="nee" value="">Nee</button>
+        </form>
+        <?php endif ?>
+          <table>
+            <thead>
+              <th> nr </th>
+              <?php foreach ($fetchAssoc[0] as $key => $value): ?>
+                <th>
+                  <?=$key ?>
+                </th>
+                <?php endforeach ?>
+                  <th>delete</th>
+            </thead>
+            <tbody>
+              <?php foreach ($fetchAssoc as $key => $value) : ?>
+                <tr class="<?php echo ($key%2) ? 'even' : 'odd' ?>">
                   <td>
-                    <form action="opdracht-CRUD-delete.php" method="post">
-                      <input type="image" name="delete" value="<?= $value['brouwernr'] ?>" src="delete.png">
-                    </form>
+                    <?= $teller++ ?>
                   </td>
-            </tr>
-            <?php endforeach;?>
-        </tbody>
-      </table>
+                  <?php foreach($value as $row): ?>
+                    <td>
+                      <?= $row ?>
+                    </td>
+
+
+                    <?php endforeach?>
+                      <td>
+                        <form action="opdracht-CRUD-delete.php" method="post">
+                          <input type="image" name="delete" value="<?= $value['brouwernr'] ?>" src="delete.png">
+                        </form>
+                      </td>
+                </tr>
+                <?php endforeach;?>
+            </tbody>
+          </table>
 
     </section>
   </body>
