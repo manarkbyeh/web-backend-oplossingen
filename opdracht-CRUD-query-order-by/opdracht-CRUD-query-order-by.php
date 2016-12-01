@@ -67,7 +67,7 @@ catch ( PDOException $e )
  
 
          <?php foreach($fetchAssoc[0] as $key => $value) : ?>
-              <th class="order <?= ($_GET["order"] ===  $order_query[0] . "-asc") ? "ascending" : "descending"  ?>"><a href="opdracht-CRUD-query-order-by.php?order_by=<?= $key ?><?= ($_GET["order"] ===  $order_query[0] . "-asc")? "-desc" : "-asc" ?>"><?= $key ?></a></th>
+              <th class="order <?= ($_GET["order"] ===  $order_query[0] . "_sort_ascending") ? "ascending" : "descending"  ?>"><a href="opdracht-CRUD-query-order-by.php?order=<?= $key ?><?= ($_GET["order"] ===  $order_query[0] . "_sort_ascending")? "_sort_descending" : "_sort_ascending" ?>"><?=$key ?></a></th>
           <?php endforeach; ?>
 
               </tr>
