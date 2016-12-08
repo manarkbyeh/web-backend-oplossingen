@@ -15,9 +15,9 @@ if (isset($_POST["submit"]))
         $sql = "SELECT  email,salt,password FROM users WHERE email = :email";
         $statement =$connect->prepare($sql);
         $statement->bindValue(':email', $email);
-        $statement->execute();
+         $check= $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
-        if($row["email"] != ""){
+        if($check){
             $password_check=hash( 'sha512', $row["salt"] . $password);
             if( $password_check==$row["password"]){
                 setcookie("login", $email.",".$row["password"].$row["salt"], time() + 2592000);

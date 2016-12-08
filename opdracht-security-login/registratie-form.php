@@ -18,9 +18,7 @@ if(isset($_COOKIE['login'])){
 {
     echo $_SESSION["notification"] ;
 }?>
-<form action="registratie-process.php" method="post">
-    <input type="submit" name="session" value="verwijderen">
-</form>
+
         <form action="registratie-process.php" method="post">
           e-mail:
           <br>
