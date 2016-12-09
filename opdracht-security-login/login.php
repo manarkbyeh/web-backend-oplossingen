@@ -23,6 +23,6 @@ session_start();
         <input type="password" name="password">
         <button type="submit" name="submit">Inloggen</button>
 	</form>
-	<p>Nog geen account? Maak er dan eentje aan op de  <a href="registratie-form.php">registratiepagina</a></p>
+	<p>Nog geen account? Maak er dan eentje aan op de  <a href="registratie-form.php">registratie pagina</a></p>
  </body>
  </html>

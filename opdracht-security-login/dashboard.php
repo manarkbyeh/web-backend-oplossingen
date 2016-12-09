@@ -46,7 +46,7 @@ if (isset($_COOKIE['login']))
 
   <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+  
   </head>
 
   <body>

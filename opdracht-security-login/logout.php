@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_COOKIE['login'])) {
-     $_SESSION["notification"]='U bent uitgelogd. Tot de volgende keer';
+     $_SESSION["notification"]='U bent uitgelogd.Tot de volgende keer';
     setcookie('login', "", 1);
     setcookie('login', false);
     unset($_COOKIE['login']);

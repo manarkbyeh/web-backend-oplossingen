@@ -1,9 +1,7 @@
 <?php
 
 session_start();
-$message="";
-$length=8;
-$check=false;
+
 $email		=	$_SESSION[ 'data' ][ 'email' ];
 $password	=	$_SESSION[ 'data' ][ 'password' ];
 if (isset($_POST['genereer'])) {
@@ -60,7 +58,7 @@ if (isset($_POST["submit"]))
                     header('location:dashboard.php');
                 }	else
                 {
-                    $_SESSION["notification"]="er iets fout gegaan";
+                    $_SESSION["notification"]="er iets fout gegaan!";
                     header("Location: registratie-form.php");
                     exit();
                 }

@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 if(isset($_COOKIE['login'])){
     
@@ -38,7 +38,7 @@ if (isset($_POST["submit"]))
         
     }    else
     {
-        $_SESSION["notification"]="dat email bestaat niet in onze database";
+        $_SESSION["notification"]="dat email bestaat  niet in onze database";
           header("Location: login.php");
                 exit();
     }

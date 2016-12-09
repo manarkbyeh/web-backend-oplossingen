@@ -27,7 +27,7 @@ if (isset($_SESSION["notification"]))
           <br> paswoord:
           <br>
           <input type="<?php $_SESSION[ 'data' ]["pasword"]? "text" : "password"?>" name="password" value="<?= $_SESSION[ 'data' ]["password"] ?>">
-          <input type="submit" name="genereer" value="genereer een paswoord">
+          <input type="submit" name="genereer" value="wil je uw password genereren ">
           <br>
           <br>
           <input type="submit" name="submit" value="register">
