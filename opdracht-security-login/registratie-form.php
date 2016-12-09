@@ -3,7 +3,10 @@ session_start();
 if(isset($_COOKIE['login'])){
     header("location:dashboard.php");
 }
-
+if (isset($_SESSION["notification"]))
+{
+   $notification= $_SESSION["notification"] ;
+}
 
 ?>
 
@@ -14,18 +17,16 @@ if(isset($_COOKIE['login'])){
 
   <body>
     <p>
- <?php if (isset($_SESSION["notification"]))
-{
-    echo $_SESSION["notification"] ;
-}?>
+     <?= $notification ?>
+</p>
 
         <form action="registratie-process.php" method="post">
           e-mail:
           <br>
-          <input type="text" name="email" value="<?php if (isset($_SESSION[ 'data' ]["email"])) {echo $_SESSION[ 'data' ]["email"]; }?>">
+          <input type="text" name="email" value="<?= $_SESSION[ 'data' ]["email"] ?>">
           <br> paswoord:
           <br>
-          <input type="<?php if(isset($_SESSION[ 'data' ]["pasword"])){ echo "text ";} else{echo "password ";}?>" name="password" value="<?php if (isset($_SESSION[ 'data' ]["password"])) { echo $_SESSION[ 'data' ]["password"];}?>">
+          <input type="<?php $_SESSION[ 'data' ]["pasword"]? "text" : "password"?>" name="password" value="<?= $_SESSION[ 'data' ]["password"] ?>">
           <input type="submit" name="genereer" value="genereer een paswoord">
           <br>
           <br>

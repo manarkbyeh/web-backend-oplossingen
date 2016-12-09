@@ -18,13 +18,13 @@ if (isset($_POST['genereer'])) {
 if (isset($_POST["submit"]))
 {
     if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["notification"]="";
+    
         
         
-        try  {
+    
             
             $connect = new PDO('mysql:host=localhost;dbname=opdrachtsecuritylogin', 'root', 'root',array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            $message=	'Connectie dmv PDO geslaagd.';
+     
             $email = $_POST['email'];
             $password = $_POST['password'];
             
@@ -32,7 +32,7 @@ if (isset($_POST["submit"]))
             $statement =$connect->prepare($sql);
             $statement->bindValue(':email', $email);
             $check=   $statement->execute();
-            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            $row = $statement->fetch();
             if($row==false){
                 
                 $sql2 = "INSERT INTO users(email, salt, password, lastlogin)
@@ -40,18 +40,21 @@ if (isset($_POST["submit"]))
                 ( :email, :salt, :password, NOW() )";
                 $statement_u =  $connect->prepare($sql2);
                 $salt = uniqid(mt_rand(), true);
-                $password .= $salt;
-                $email_hash = $email . $salt;
-                $email_hash = hash('sha512', $email_hash);
-                $hash = hash('sha512', $password);
+               $salt_password= $password . $salt;
+                $hash = hash('sha512',  $salt_password);
+                var_dump( $hash );
                 $statement_u->bindValue(':email', $email);
                 $statement_u->bindValue(':salt', $salt);
                 $statement_u->bindValue(':password', $hash);
                 $check_u=  $statement_u->execute();
+                var_dump( $_POST );
                 
                 
                 
                 if(  $check_u){
+                    
+                $email_hash = $email . $salt;
+                $email_hash = hash('sha512', $email_hash);
                     setcookie('login', $email . ',' . $email_hash, time() + 2592000);
                     
                     header('location:dashboard.php');
@@ -69,11 +72,7 @@ if (isset($_POST["submit"]))
                 header("Location: login.php");
                 exit();
             }
-        }
-        catch ( PDOException $e )
-        {
-            $message=	'Er ging iets mis: ' . $e->getMessage();
-        }
+     
         
         
         

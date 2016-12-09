@@ -1,7 +1,11 @@
 <?php 
 session_start();
-
+ if (isset($_SESSION["notification"])) 
+ {
+ 	$notification= $_SESSION["notification"];
+ }
  ?>
+ 
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -9,11 +13,8 @@ session_start();
  	<title>Login</title>
  </head>
  <body>
- <p><?php if (isset($_SESSION["notification"])) 
- {
- 	echo $_SESSION["notification"];
- }
- ?>
+ <p>
+ <?= $notification ?>
  </p>
  	 <form action="login-process.php" method="post">
 		<label for="email">E-mail</label><br>

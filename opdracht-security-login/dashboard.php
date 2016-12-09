@@ -9,16 +9,11 @@ if (isset($_COOKIE['login']))
     
     
     
-    try
-    {
+  
         
         $connect = new PDO('mysql:host=localhost;dbname=opdrachtsecuritylogin', 'root', 'root', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        $message	=	'Connectie dmv PDO geslaagd.';
-    }
-    catch ( PDOException $e )
-    {
-        $message=	'Er ging iets mis: ' . $e->getMessage();
-    }
+     
+ 
     $sql= "SELECT salt FROM users
     WHERE email = :email";
     $statement =    $connect->prepare($sql);
@@ -27,7 +22,7 @@ if (isset($_COOKIE['login']))
     
     
     
-    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    $row = $statement->fetch();
     
     $salt =$row['salt'];
     $salt_email = hash('sha512',    $my_array_email . $salt);
@@ -44,15 +39,7 @@ if (isset($_COOKIE['login']))
     exit();
     
 }
-if (isset($_GET["outlogin"]) && $_GET["outlogin"]=="true")
-{
-    
-    setcookie("login", "", time() - 3600);
-    $_SESSION["notification"]="u moet eerst inloggen" ;
-    header("Location: login.php");
-    exit();
-    
-}
+
 ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -63,9 +50,11 @@ if (isset($_GET["outlogin"]) && $_GET["outlogin"]=="true")
   </head>
 
   <body>
+	<form action="logout.php" method="POST">
+						<input type="submit" name="logout" value="Uitloggen" >
+					</form>
 
-
-    <a href="?outlogin=true">uitloggen</a>
+  
 
   </body>
 
