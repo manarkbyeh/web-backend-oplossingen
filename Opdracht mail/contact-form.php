@@ -23,15 +23,12 @@ if (isset($_SESSION["notification"]))
         <li>
           <br> Comment:
           <br>
-          <textarea name="message" type="text">
-            <?php if(isset($_SESSION['message'])) {
-echo htmlentities ($_SESSION['message']); }?>
-          </textarea>
+          <textarea name="message" type="text"><?php if(isset($_SESSION['message'])) {echo htmlentities ($_SESSION['message']); }?></textarea>
         </li>
         <li>
           <br>
           <br>
-          <input type="checkbox" name="checkbox" value="<?php if ( isset( $_SESSION['checkbox'] ) ) { echo " checked='checked' ";} ?>"> Stuur een kopie naar mezelf:
+          <input type="checkbox" name="checkbox" value=""<?php if ( isset( $_SESSION['checkbox'] ) ) { echo " checked='checked' ";} ?>> Stuur een kopie naar mezelf:
         </li>
         <li>
           <br>

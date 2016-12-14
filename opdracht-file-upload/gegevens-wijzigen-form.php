@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 if (isset($_COOKIE['login']))
 {
     $my_data=explode(",",$_COOKIE["login"]);
@@ -23,7 +22,8 @@ if (isset($_COOKIE['login']))
     
     
     $row = $statement->fetch();
-    $row_gebruiker=$row[0];
+    $row_gebruiker=$row[4];
+   
   
 
 }else{
@@ -47,7 +47,6 @@ if (isset($_COOKIE['login']))
 <body>
 
   <p>
-      <?= '<img src="img/$name">' ?>
         <?= $notification ?>
 
     </p>
@@ -57,14 +56,14 @@ if (isset($_COOKIE['login']))
             <li>
                 <label for="pic">
             
-                    <img src="<?=  $row_gebruiker['profile_picture'] ?>" alt="">
+                    <img src="<?=  $row_gebruiker ?>" width="150" height="150" alt="photo de profil">
                 </label>
 
                 <input type="file"  name="pic">
             </li>
                 <li>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="<?=  $my_array_email ?>">
+            <input type="email" name="email" id="email"  value="<?=  $my_array_email ?>">
         </li>
         </ul>
         <input type="submit" value="Wijzigen" name="submit">

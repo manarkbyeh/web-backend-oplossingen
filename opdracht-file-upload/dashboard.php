@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+    //       var_dump($_COOKIE["login"]);
+    // exit();
 if (isset($_COOKIE['login']))
 {
     $my_data=explode(",",$_COOKIE["login"]);

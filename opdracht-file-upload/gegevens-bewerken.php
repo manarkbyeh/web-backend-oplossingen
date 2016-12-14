@@ -6,6 +6,9 @@ if (isset($_COOKIE['login'])) {
     $my_data=explode(",",$_COOKIE["login"]);
     $my_array_email =  $my_data[0];
     $my_array_hash =  $my_data[1];
+    $my_array_id =  $my_data[2];
+   
+
     if (isset($_POST['submit'])) {
         $name=$_FILES['pic']['name'];
         $size=$_FILES['pic']['size'];
@@ -27,11 +30,11 @@ if (isset($_COOKIE['login'])) {
                             $_SESSION["notification"]="foto is upgeloaden";
                             $connect = new PDO('mysql:host=localhost;dbname=oplossing_file_upload', 'root', 'root', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-                            $sql = "UPDATE users SET email = :email, profile_picture = :pic WHERE email = :oldEmail";
+                            $sql = "UPDATE users SET email = :email, profile_picture = :pic WHERE id = :id";
                             $statement =    $connect->prepare($sql);
                             $statement->bindValue(":email",   $_POST['email']);
                              $statement->bindValue(":pic", $path);
-                            $statement->bindValue(":oldEmail",$my_array_email);
+                            $statement->bindValue(":id",$my_array_id);
                             $uitvoer= $statement->execute();
                             // echo $_POST['email'];
                             // echo  $path;
@@ -40,6 +43,8 @@ if (isset($_COOKIE['login'])) {
                             
                             if($uitvoer)
                             {
+                                  $val = $_POST['email'].",".$my_array_hash .",".$my_array_id ;
+                                 setcookie("login",$val, time() + 2592000);
                                 $_SESSION["notification"]="foto is upgedite";
                                 header("Location: gegevens-wijzigen-form.php");
                                 exit();

@@ -51,11 +51,8 @@ if (isset($_POST["submit"]))
                 
                 if(  $check_u){
                     
-                $email_hash = $email . $salt;
-                $email_hash = hash('sha512', $email_hash);
-                    setcookie('login', $email . ',' . $email_hash, time() + 2592000);
-                    
-                    header('location:dashboard.php');
+                    header('location:login.php');
+                    exit();
                 }	else
                 {
                     $_SESSION["notification"]="er iets fout gegaan!";
