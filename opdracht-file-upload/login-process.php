@@ -28,10 +28,10 @@ if (isset($_POST["submit"]))
         // exit();
         if( $password_check==$row["password"]){
             $val = $email.",".$row["password"].$row["salt"].",".$row["id"];
-           // echo $val ;
+           echo $val ;
             setcookie("login",$val, time() + 2592000);
-    //          var_dump($_COOKIE["login"]);
-    // exit();
+        var_dump($_COOKIE["login"]);
+              exit();
               header("Location: dashboard.php");
                 exit();
         }

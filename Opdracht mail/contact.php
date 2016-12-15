@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
             
             if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 try{
-   $connect = new PDO('mysql:host=localhost;dbname=mail', 'root', 'root',array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+   $connect = new PDO('mysql:host=localhost;dbname=mailopdracht', 'root', 'root',array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
                 }catch ( PDOException $e )
 {
     $messageContainer	=	'Er ging iets mis: ' . $e->getMessage();

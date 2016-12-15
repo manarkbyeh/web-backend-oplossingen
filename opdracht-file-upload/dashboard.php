@@ -1,9 +1,10 @@
 <?php
 session_start();
-    //       var_dump($_COOKIE["login"]);
-    // exit();
+    
 if (isset($_COOKIE['login']))
 {
+      //  var_dump($_COOKIE["login"]);
+     //exit();
     $my_data=explode(",",$_COOKIE["login"]);
     $my_array_email =  $my_data[0];
     $my_array_hash =  $my_data[1];
@@ -37,8 +38,8 @@ if (isset($_COOKIE['login']))
 }else{
     $_SESSION["notification"]="je bent nog niet ingelogt";
     
-  /*  header("Location: login.php");
-    exit();*/
+   header("Location: login.php");
+ exit();
     
 }
 
@@ -57,7 +58,7 @@ if (isset($_COOKIE['login']))
 					</form>
 
     <ul>
-        <li><a href="oplossing-file-upload-artikels-overzicht.php">Artikels</a></li>
+        <li><a href="">Artikels</a></li>
         <li><a href="gegevens-wijzigen-form.php">Gegevens wijzigen</a></li>
     </ul>
   

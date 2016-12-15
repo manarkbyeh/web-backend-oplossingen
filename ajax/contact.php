@@ -1,10 +1,11 @@
 <?php
+if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' ) {
 if(isset($_POST['email'])){
     if(isset($_POST['message'])){
         
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             
-            $connect = new PDO('mysql:host=localhost;dbname=mail', 'root', 'root',array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $connect = new PDO('mysql:host=localhost;dbname=ajax', 'root', 'root',array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             $admin="manar.kbyeh@student.kdg.be";
             
             
@@ -41,5 +42,6 @@ if(isset($_POST['email'])){
     
 }else{
     echo "vul de email veld in!";
+}
 }
 ?>
