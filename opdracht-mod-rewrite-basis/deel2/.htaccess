@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^manar$ index.php?page=$manar

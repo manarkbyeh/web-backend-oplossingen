@@ -1,0 +1,5 @@
+#Alternate default index page
+DirectoryIndex original.php
+
+RewriteEngine On
+RewriteRule ^manar$ original.php?user=$manar&role=$admin
