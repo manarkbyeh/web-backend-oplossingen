@@ -29,18 +29,9 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::get('/home', 'HomeController@index');
-    Route::get('/api', 'Admin@api');
-    Route::get('/home', 'Admin@url');
-	//offline
-    Route::get('/story', 'Admin@story');
-    Route::get('/comment', 'Admin@comment');
-    Route::get('/polls', 'Admin@polls');
-    Route::get('/job', 'Admin@job');
-    Route::get('/manar','Admin@at2ota');
-	//live
-	Route::get('/item', 'Admin@profile_itme');
-    Route::get('/article', function () {
-    return view('addarticle');
+      Route::get('/Showarticle',function(){
+        return view('admin.show');
+
 });
 
 	
