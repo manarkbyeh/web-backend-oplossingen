@@ -7,34 +7,34 @@
                     <div class="panel-heading">Article overview</div>
 
                     <div class="panel-content">
-
                         <ul class="article-overview">
-                            @foreach($blog as $item)
+                            @foreach($result as $item)
                            
                                 <li>
-                                    <div class="vote">
+                                   <div class="vote">
                                         <div class="form-inline upvote">
-                                            <a id="bL-like-{{$item["User_Id"]}}-{{$item["id"]}}" href="{{URL('/')}}">
-                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="You need to be logged in to vote"></i></a>
+                                            <a id="bL-like" href="{{URL('/')}}">
+                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="You need to be logged in to vote"></i>
+                                                </a>
                                         </div>
                                         <div class="form-inline upvote">
-                                            <a id="bL-like-{{$item["User_Id"]}}-{{$item["id"]}}" href="{{URL('/')}}">
+                                            <a id="bL-like" href="{{URL('/')}}">
                                                 <i class="fa fa-btn fa-caret-down disabled downvote" title="You need to be logged in to downvote"></i></a>
                                         </div>
                                     </div>
                                     <div class="container-fluid">
-                                        @if ($item->post_user_id == Auth::user()->id)
-                                            <a target="_blank" href="<?php echo $item->post_slug ?>" class="urlTitle"><?php echo  $item->post_title?> </a>
-                                            <p class="col-lg-6 col-lg-6"><?php echo  $item->post_content?> </p>
-                                            <a href="{{url('/post/edit',$item->post_id)}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                        @if ($item->user_id == Auth::user()->id)
+                                            <a target="_blank" href="<?php echo $item->url ?>" class="urlTitle"><?php echo  $item->title?> </a>
+                                            <p class="col-lg-6 col-lg-6"><?php echo  $item->content?> </p>
+                                            <a href="{{url('/post/edit',$item->id)}}" class="btn btn-primary btn-xs edit-btn">edit</a>
                                         @else
-                                            <a target="_blank" href="<?php echo $item->post_slug ?>" class="urlTitle"><?php echo  $item->post_title?> </a>
-                                            <p class="col-lg-6 col-lg-6"><?php echo  $item->post_content?> </p>
+                                            <a target="_blank" href="<?php echo $item->url ?>" class="urlTitle"><?php echo  $item->title ?> </a>
+                                            <p class="col-lg-6 col-lg-6"><?php echo  $item->content ?> </p>
 
                                         @endif
                                     </div>
                                     <div class="info">
-                                        Post Vote 1 | Posted by <?php echo  $item->post_user ?> |  <a href="{{url('/post/comment',$item->post_id)}}"><?php echo  $item->post_count_comment ?>Comment</a>
+                                        Post Vote <?php echo  $item->likes ?> | Posted by <?php echo  $item->author ?> |  <a href="{{url('/post/comment',$item->id)}}"><?php echo  $item->post_count_comments ?>Comment</a>
                                     </div>
                                 </li>
                             @endforeach

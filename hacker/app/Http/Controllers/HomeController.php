@@ -22,38 +22,17 @@ use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-   
-
-    public function index()
+   public function index()
     {
-      $blog = Post::select('*')
-            ->leftjoin('users','posts.user_id','=','users.id')
-            ->select('posts.id as post_id','posts.title as post_title','posts.content as post_content','posts.slug as post_slug','users.name as post_user','posts.user_id as post_user_id')
-             ->leftjoin('comments','posts.user_id','=','comments.user_id')
-             ->select(['*',DB::raw('count(posts.user_id')])
-            //->leftjoin('likes','posts.user_id','=','likes.id')
-            //  ->orderBy('posts.id', 'DESC')
-            // ->groupBy('posts.id')
-            ->paginate(10);
-
-
-      
+     $result = DB::select(DB::raw("select posts.* , (select count(comments.user_id) from comments where comments.post_id = posts.id) as post_count_comments from posts "));
         //  echo"<pre>";
 
         //     print_r($blog);
         //     echo "</pre>";
         
-      return view('Home',['blog'=>$blog]);
+      return view('Home',['result'=>$result]);
     }
     // public function 
- public function toSql()
-  {
-        //I add this line to make debugging easier (originally it's all one return statement)
-        //note: 
-      $checkMysql = $this->grammar->compileSelect($this);
-        
-        //I put breakpoint here
-    return $checkMysql;
-  }
+
 }
 

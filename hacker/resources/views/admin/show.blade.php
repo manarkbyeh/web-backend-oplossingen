@@ -9,10 +9,6 @@
             ->select('posts.id as post_id','posts.title as post_title','posts.content as post_content','posts.slug as post_slug','users.name as post_user','posts.user_id as post_user_id')
             ->orderBy('posts.id', 'DESC')
             ->paginate(10);
-            echo"<pre>";
-
-            print_r($log);
-            echo "</pre>";
     ?>
     <div class="container">
         <div class="row">

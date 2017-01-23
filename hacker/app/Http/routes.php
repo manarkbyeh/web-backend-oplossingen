@@ -37,11 +37,17 @@ Route::group(['middleware' => ['web']], function () {
     //Article
     Route::get('/article', function () {
     return view('admin.create');});
-  
+    Route::get('/post/edit', function () {
+        return view('admin.edit');});
+    Route::get('/Showarticle',function(){
+        return view('admin.show');
+    });
   
 
     Route::post('/publish', array('as' => 'publish', 'uses' => 'Admin@Create_post'));
-   
+       Route::get('/post/edit/{id}', array('as' => 'post_edit', 'uses' => 'HomeController@edit_posts'));
+    Route::post('/post/update', array('as' => 'post_update', 'uses' => 'HomeController@update_post'));
+    Route::get('/post/del/{id}', array('as' => 'post_delete', 'uses' => 'HomeController@Del_posts'));
 });
 
 

@@ -15,6 +15,8 @@ class Likes extends Migration
         Schema::create('likes', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->integer('up')->default(0);
+            $table->integer('down')->default(0);
             $table->integer('post_id');
             $table->integer('user_id');
             $table->softDeletes();

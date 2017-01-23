@@ -1,15 +1,16 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\User;
 use Input;
-use Illuminate\Http\Request;
 use Response;
-use App\Post;
+use Validator;
+use Auth;
 use App\Http\Requests;
+use App\Post;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use NilPortugues\Laravel5\JsonApi\Controller\JsonApiController;
 
 class Admin extends Controller
 {
@@ -42,5 +43,11 @@ class Admin extends Controller
         }
 
     }
+
+}
+    
+
+
+    
 
 }

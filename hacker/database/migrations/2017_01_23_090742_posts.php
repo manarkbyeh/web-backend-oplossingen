@@ -15,8 +15,10 @@ class Posts extends Migration
          Schema::create('posts', function (Blueprint $table) {
         $table->increments('id');
         $table->string('title',100);
-        $table->string('slug',100);
+        $table->string('url',100);
         $table->text('content');
+        $table->text('author');
+        $table->integer('likes')->default(0);       
         $table->boolean('is_delete')->default(false);
         $table->integer('user_id')->unsigned();
         $table->timestamps();
