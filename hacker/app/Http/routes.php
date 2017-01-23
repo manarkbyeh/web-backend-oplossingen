@@ -12,7 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $article = App\Post::select('*')
+        ->leftjoin('users','posts.user_id','=','users.id')
+        ->select('posts.id as post_id','posts.title as post_title','posts.content as post_content','posts.slug as post_slug','users.name as post_user','posts.user_id as post_user_id')
+        ->orderBy('posts.id', 'DESC')
+        ->paginate(10);
+    return view('welcome')->with('article',$article);
 });
 
 /*
@@ -29,12 +34,14 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::get('/home', 'HomeController@index');
-      Route::get('/Showarticle',function(){
-        return view('admin.show');
+    //Article
+    Route::get('/article', function () {
+    return view('admin.create');});
+  
+  
 
-});
-
-	
+    Route::post('/publish', array('as' => 'publish', 'uses' => 'Admin@Create_post'));
+   
 });
 
 
