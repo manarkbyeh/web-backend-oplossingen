@@ -157,7 +157,7 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
 				    @else
 					<li><a href="{{ url('/Showarticle') }}">All Articles</a></li>
-					<li><a href="{{ url('/article') }}">Add Article</a></li>
+					<li><a href="{{ url('/Article') }}">Add Article</a></li>
 				    @endif
 
                 </ul>
