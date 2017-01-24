@@ -49,8 +49,7 @@
                 <label for="article-url" class="col-sm-3 control-label">Content(max. 255 characters)</label>
 
                 <div class="col-sm-6">
-                  <textarea required="required" placeholder="<?php echo $Post->content ?>" name="content" class="form-control">
-                    <?php echo $Post->content ?>
+                  <textarea required="required" placeholder="<?php echo $Post->content ?>" name="content" class="form-control"><?php echo $Post->content ?>
                   </textarea>
                 </div>
               </div>

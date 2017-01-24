@@ -13,17 +13,16 @@
                     <div class="panel-content">
                         <ul class="article-overview">
                             @foreach($result as $item)
-                           
                                 <li>
                                    <div class="vote">
                                         <div class="form-inline upvote">
-                                            <a id="bL-like" href="{{URL('/')}}">
-                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="You need to be logged in to vote"></i>
+                                            <a id="bL-like" href="{{url('Vote/Up',[$item->id, $item->user_id])}}">
+                                                <i class="fa fa-btn fa-caret-up  <?php echo (!empty($item->up)&& $item->up ==1)? '':'disabled' ?> upvote" title="You need to be logged in to vote"></i>
                                                 </a>
                                         </div>
                                         <div class="form-inline upvote">
-                                            <a id="bL-like" href="{{URL('/')}}">
-                                                <i class="fa fa-btn fa-caret-down disabled downvote" title="You need to be logged in to downvote"></i></a>
+                                            <a id="bL-like" href="{{url('Vote/Down',[$item->id, $item->user_id])}}">
+                                                <i class="fa fa-btn fa-caret-down <?php echo (!empty($item->down)&& $item->down == -1)? '':'disabled' ?> downvote" title="You need to be logged in to downvote"></i></a>
                                         </div>
                                     </div>
                                     <div class="container-fluid">

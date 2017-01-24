@@ -23,18 +23,13 @@ use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-   public function index()
+    public function index()
     {
-     $result = DB::select(DB::raw("select posts.* , (select count(comments.user_id) from comments where comments.post_id = posts.id) as post_count_comments from posts where is_delete = 0 ORDER BY posts.id DESC"));
-        //  echo"<pre>";
-
-        //     print_r($blog);
-        //     echo "</pre>";
-
-     
-       return view('Home',['result'=>$result]);
+        $result = DB::select(DB::raw("SELECT posts.* , (select count(comments.user_id) from comments where comments.post_id = posts.id) as post_count_comments,likes.up,likes.down FROM posts LEFT JOIN likes ON likes.user_id = posts.user_id and likes.post_id = posts.id where posts.is_delete = 0 ORDER BY posts.id DESC"));
+        // echo"<pre>";
+        // print_r($result);
+        // echo "</pre>";
+        return view('Home',['result'=>$result]);
     }
-    // public function 
-
+    
 }
-

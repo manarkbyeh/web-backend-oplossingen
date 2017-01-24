@@ -40,7 +40,7 @@ class Article extends Controller
             // echo"<pre>";
             // print_r($posts);
             // echo "</pre>";
-            // $posts->save();
+            $posts->save();
             return Redirect::to("/home")
             ->with('Success', 'article "'.input::get('title').'" created succesfully');
         }
@@ -84,7 +84,7 @@ class Article extends Controller
             return Redirect::to("/home")
             ->with('Success','Article "'.$poo->title.'" deleted successfully' );
         }else if (input::get('cancel')){
-           return $this->edit_posts($id);
+            return $this->edit_posts($id);
         }
     }
 }

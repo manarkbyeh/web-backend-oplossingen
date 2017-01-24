@@ -43,6 +43,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/Article/Update', array('as' => 'post_update', 'uses' => 'Article@update_post'));
     Route::get('/Article/Del/{id}', array('as' => 'post_delete', 'uses' => 'Article@del_posts'));
     Route::post('/Article/Conf', array('as' => 'post_conf', 'uses' => 'Article@conf_posts'));
+    Route::get('/Vote/Up/{id}/{user}', array('as' => 'vote_up', 'uses' => 'VoteController@up'));
+    Route::get('/Vote/Down/{id}/{user}', array('as' => 'vote_down', 'uses' => 'VoteController@down'));
 });
 
 
