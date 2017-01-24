@@ -4,14 +4,9 @@
 @endsection
 @section('content')
     <?php
-    $blog = App\Post::select('*')
-            ->leftjoin('users','posts.user_id','=','users.id')
-            ->select('posts.id as post_id','posts.title as post_title','posts.content as post_content','posts.slug as post_slug','users.name as post_user','posts.user_id as post_user_id')
-            ->orderBy('posts.id', 'DESC')
-            ->paginate(10);
-    ?>
     <div class="container">
         <div class="row">
+        
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Article overview</div>

@@ -44,10 +44,5 @@ class Admin extends Controller
 
     }
 
-}
     
-
-
-    
-
 }

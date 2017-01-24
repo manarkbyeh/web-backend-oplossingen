@@ -40,8 +40,8 @@ class Article extends Controller
             print_r($posts);
             echo "</pre>";
             $posts->save();
-            // return Redirect::to("/Showarticle?success=$posts->id")
-            //     ->with('Success', 'You have been successfully Add New One ');
+             return Redirect::to("/home")
+            ->with('Success', input::get('title'));
         }
     }
 }

@@ -3,9 +3,13 @@
  <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+             @if($Success = (Session::has('Success')) ? Session::get('Success') : "")
+            <div class="bg-success">
+                   article <?php echo $Success; ?> created succesfully
+                </div>
+                 @endif
                 <div class="panel panel-default">
                     <div class="panel-heading">Article overview</div>
-
                     <div class="panel-content">
                         <ul class="article-overview">
                             @foreach($result as $item)

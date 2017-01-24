@@ -13,6 +13,7 @@ use Input;
 use Response;
 use Auth;
 use DB;
+use Session;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\File;
@@ -29,8 +30,9 @@ class HomeController extends Controller
 
         //     print_r($blog);
         //     echo "</pre>";
-        
-      return view('Home',['result'=>$result]);
+
+     
+       return view('Home',['result'=>$result]);
     }
     // public function 
 

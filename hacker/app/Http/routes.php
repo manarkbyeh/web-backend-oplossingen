@@ -11,14 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    $article = App\Post::select('*')
-        ->leftjoin('users','posts.user_id','=','users.id')
-        ->select('posts.id as post_id','posts.title as post_title','posts.content as post_content','posts.slug as post_slug','users.name as post_user','posts.user_id as post_user_id')
-        ->orderBy('posts.id', 'DESC')
-        ->paginate(10);
-    return view('welcome')->with('article',$article);
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,15 +26,16 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
+    Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
     //Article
     Route::get('/Article', function () {
         return view('Article.create');});
     Route::get('/post/edit', function () {
         return view('admin.edit');});
-    Route::get('/Home',function(){
-        return view('admin.show');
-    });
+    // Route::get('/Home',function(){
+    //     return view('Home');
+    // });
   
 
     Route::post('/Publish', array('as' => 'Publish', 'uses' => 'Article@create_post'));
