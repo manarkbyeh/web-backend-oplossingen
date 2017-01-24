@@ -5,7 +5,7 @@
             <div class="col-md-10 col-md-offset-1">
              @if($Success = (Session::has('Success')) ? Session::get('Success') : "")
             <div class="bg-success">
-                   article <?php echo $Success; ?> created succesfully
+                   <?php echo $Success; ?>
                 </div>
                  @endif
                 <div class="panel panel-default">
@@ -29,8 +29,7 @@
                                     <div class="container-fluid">
                                         @if ($item->user_id == Auth::user()->id)
                                             <a target="_blank" href="<?php echo $item->url ?>" class="urlTitle"><?php echo  $item->title?> </a>
-                                            <p class="col-lg-6 col-lg-6"><?php echo  $item->content?> </p>
-                                            <a href="{{url('/post/edit',$item->id)}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                            <a href="{{url('/Article/Edit',$item->id)}}" class="btn btn-primary btn-xs edit-btn">edit</a>
                                         @else
                                             <a target="_blank" href="<?php echo $item->url ?>" class="urlTitle"><?php echo  $item->title ?> </a>
                                             <p class="col-lg-6 col-lg-6"><?php echo  $item->content ?> </p>
@@ -38,7 +37,7 @@
                                         @endif
                                     </div>
                                     <div class="info">
-                                        Post Vote <?php echo  $item->likes ?> | Posted by <?php echo  $item->author ?> |  <a href="{{url('/post/comment',$item->id)}}"><?php echo  $item->post_count_comments ?>Comment</a>
+                                        Post Vote <?php echo  $item->likes ?> | Posted by <?php echo  $item->author ?> |  <a href="{{url('/post/comment',$item->id)}}"><?php echo  $item->post_count_comments ?> Comment</a>
                                     </div>
                                 </li>
                             @endforeach

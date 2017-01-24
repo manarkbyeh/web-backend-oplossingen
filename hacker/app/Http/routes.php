@@ -31,17 +31,18 @@ Route::group(['middleware' => ['web']], function () {
     //Article
     Route::get('/Article', function () {
         return view('Article.create');});
-    Route::get('/post/edit', function () {
-        return view('admin.edit');});
+    // Route::get('/Article/edit', function () {
+    //     return view('admin.edit');});
     // Route::get('/Home',function(){
     //     return view('Home');
     // });
   
 
     Route::post('/Publish', array('as' => 'Publish', 'uses' => 'Article@create_post'));
-    Route::get('/post/edit/{id}', array('as' => 'post_edit', 'uses' => 'HomeController@edit_posts'));
-    Route::post('/post/update', array('as' => 'post_update', 'uses' => 'HomeController@update_post'));
-    Route::get('/post/del/{id}', array('as' => 'post_delete', 'uses' => 'HomeController@Del_posts'));
+    Route::get('/Article/Edit/{id}', array('as' => 'post_edit', 'uses' => 'Article@edit_posts'));
+    Route::post('/Article/Update', array('as' => 'post_update', 'uses' => 'Article@update_post'));
+    Route::get('/Article/Del/{id}', array('as' => 'post_delete', 'uses' => 'Article@del_posts'));
+    Route::post('/Article/Conf', array('as' => 'post_conf', 'uses' => 'Article@conf_posts'));
 });
 
 

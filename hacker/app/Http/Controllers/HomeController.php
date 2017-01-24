@@ -25,7 +25,7 @@ class HomeController extends Controller
 {
    public function index()
     {
-     $result = DB::select(DB::raw("select posts.* , (select count(comments.user_id) from comments where comments.post_id = posts.id) as post_count_comments from posts "));
+     $result = DB::select(DB::raw("select posts.* , (select count(comments.user_id) from comments where comments.post_id = posts.id) as post_count_comments from posts where is_delete = 0 ORDER BY posts.id DESC"));
         //  echo"<pre>";
 
         //     print_r($blog);
