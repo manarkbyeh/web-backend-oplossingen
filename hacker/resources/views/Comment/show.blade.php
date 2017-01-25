@@ -42,7 +42,7 @@
                 </div>
                 <div class="comment-info">Posted by <?php echo $comment->name ?> on <?php echo $comment->time ?>
                       @if (isset(Auth::user()->id) && $comment->user_id == Auth::user()->id)
-                      <a href="http://pascalculator.be/hackernews/public/comments/edit/7" class="btn btn-primary btn-xs edit-btn">edit</a>
+                      <a href="{{url('Comment/Edit',$comment->id)}}" class="btn btn-primary btn-xs edit-btn">edit</a>
                       <a href="http://pascalculator.be/hackernews/public/comments/delete/7" class="btn btn-danger btn-xs edit-btn">
                         <i class="fa fa-btn fa-trash" title="delete"></i> delete
                       </a>

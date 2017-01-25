@@ -26,7 +26,7 @@ class CommentController extends Controller
         $comments = Comment::select("*")
         ->leftjoin("users","comments.user_id","=","users.id")
         ->select('comments.content as content','users.name as name ',
-        'comments.created_at as time','users.id as user_id')
+        'comments.created_at as time','users.id as user_id','comments.id as id')
         ->where("post_id",$id)
         ->get();
         
@@ -57,9 +57,34 @@ class CommentController extends Controller
             $commnet->content = input::get('comment');
             $commnet->user_id = Auth::user()->id;
             $commnet->save();
-            return redirect()->route('show_comments', ['id' => $commnet->user_id])
+            return redirect()->route('show_comments', ['id' =>  $commnet->post_id])
             ->with('Success', "comment added succesfully.");
         }
         return Redirect::to("/home");
-    }    
+    }
+    
+    
+    public function show_comment($id){
+        $comment = Comment::select('*')->where('id',$id)->first();
+        if(isset($comment)){
+            return view("Comment.edit",['comment'=>$comment]);
+        }
+        return redirect("/home");
+    }
+
+    public function update_comment(){
+        $commnet = Comment::select('*')->where('id',input::get('id'))->first();
+        if(isset($commnet)){
+            $commnet->content = input::get('comment');
+            $commnet->update();
+            return redirect()->route('show_comment', ['id' => $commnet->id])
+            ->with('Success', "comment edited succesfully");
+        }
+        return Redirect::to("/home");
+    }
+
+
+
+
+
 }

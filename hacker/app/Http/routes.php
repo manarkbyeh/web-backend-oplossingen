@@ -42,4 +42,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/Vote/Down/{id}/{user}/{location}', array('as' => 'vote_down', 'uses' => 'VoteController@down'));
     Route::get('/Comment/{id}', array('as' => 'show_comments', 'uses' => 'CommentController@index'));
     Route::post('/Comment/Add', array('as' => 'create_comment', 'uses' => 'CommentController@create_comment'));
+    Route::get('/Comment/Edit/{id}', array('as' => 'show_comment', 'uses' => 'CommentController@show_comment'));
+    Route::post('/Comment/Edit', array('as' => 'update_comment', 'uses' => 'CommentController@update_comment'));
 });
