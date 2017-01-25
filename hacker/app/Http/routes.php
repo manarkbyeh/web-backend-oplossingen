@@ -31,11 +31,6 @@ Route::group(['middleware' => ['web']], function () {
     //Article
     Route::get('/Article', function () {
         return view('Article.create');});
-    // Route::get('/Article/edit', function () {
-    //     return view('admin.edit');});
-    // Route::get('/Home',function(){
-    //     return view('Home');
-    // });
   
 
     Route::post('/Publish', array('as' => 'Publish', 'uses' => 'Article@create_post'));
@@ -43,8 +38,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/Article/Update', array('as' => 'post_update', 'uses' => 'Article@update_post'));
     Route::get('/Article/Del/{id}', array('as' => 'post_delete', 'uses' => 'Article@del_posts'));
     Route::post('/Article/Conf', array('as' => 'post_conf', 'uses' => 'Article@conf_posts'));
-    Route::get('/Vote/Up/{id}/{user}', array('as' => 'vote_up', 'uses' => 'VoteController@up'));
-    Route::get('/Vote/Down/{id}/{user}', array('as' => 'vote_down', 'uses' => 'VoteController@down'));
+    Route::get('/Vote/Up/{id}/{user}/{location}', array('as' => 'vote_up', 'uses' => 'VoteController@up'));
+    Route::get('/Vote/Down/{id}/{user}/{location}', array('as' => 'vote_down', 'uses' => 'VoteController@down'));
+    Route::get('/Comment/{id}', array('as' => 'show_comments', 'uses' => 'CommentController@index'));
 });
 
 

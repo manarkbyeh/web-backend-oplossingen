@@ -16,7 +16,7 @@
                                 <li>
                                    <div class="vote">
                                         <div class="form-inline upvote">
-                                            <a id="bL-like" href="{{url('Vote/Up',[$item->id, $item->user_id])}}">
+                                            <a id="bL-like" href="{{url('Vote/Up',[$item->id, $item->user_id)}}">
                                                 <i class="fa fa-btn fa-caret-up  <?php echo (!empty($item->up)&& $item->up ==1)? '':'disabled' ?> upvote" title="You need to be logged in to vote"></i>
                                                 </a>
                                         </div>
@@ -32,7 +32,7 @@
                                         @endif
                                     </div>
                                     <div class="info">
-                                        Post Vote <?php echo  $item->likes ?> | Posted by <?php echo  $item->author ?> |  <a href="{{url('/post/comment',$item->id)}}"><?php echo  $item->post_count_comments ?> Comment</a>
+                                        Post Vote <?php echo  $item->likes ?> | Posted by <?php echo  $item->author ?> |  <a href="{{url('/Comment',$item->id)}}"><?php echo  $item->post_count_comments ?> Comment</a>
                                     </div>
                                 </li>
                             @endforeach
