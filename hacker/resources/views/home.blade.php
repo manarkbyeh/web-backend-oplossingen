@@ -26,13 +26,9 @@
                                         </div>
                                     </div>
                                     <div class="container-fluid">
+                                        <a target="_blank" href="<?php echo $item->url ?>" class="urlTitle"><?php echo  $item->title?> </a>
                                         @if (isset(Auth::user()->id) && $item->user_id == Auth::user()->id)
-                                            <a target="_blank" href="<?php echo $item->url ?>" class="urlTitle"><?php echo  $item->title?> </a>
                                             <a href="{{url('/Article/Edit',$item->id)}}" class="btn btn-primary btn-xs edit-btn">edit</a>
-                                        @else
-                                            <a target="_blank" href="<?php echo $item->url ?>" class="urlTitle"><?php echo  $item->title ?> </a>
-                                            <p class="col-lg-6 col-lg-6"><?php echo  $item->content ?> </p>
-
                                         @endif
                                     </div>
                                     <div class="info">
