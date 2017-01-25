@@ -30,9 +30,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', 'HomeController@index');
     //Article
     Route::get('/Article', function () {
-        return view('Article.create');});
-  
-
+    return view('Article.create');});
+    
+    
     Route::post('/Publish', array('as' => 'Publish', 'uses' => 'Article@create_post'));
     Route::get('/Article/Edit/{id}', array('as' => 'post_edit', 'uses' => 'Article@edit_posts'));
     Route::post('/Article/Update', array('as' => 'post_update', 'uses' => 'Article@update_post'));
@@ -41,7 +41,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/Vote/Up/{id}/{user}/{location}', array('as' => 'vote_up', 'uses' => 'VoteController@up'));
     Route::get('/Vote/Down/{id}/{user}/{location}', array('as' => 'vote_down', 'uses' => 'VoteController@down'));
     Route::get('/Comment/{id}', array('as' => 'show_comments', 'uses' => 'CommentController@index'));
+    Route::post('/Comment/Add', array('as' => 'create_comment', 'uses' => 'CommentController@create_comment'));
 });
-
-
-
