@@ -26,7 +26,7 @@
                                         </div>
                                     </div>
                                     <div class="container-fluid">
-                                        @if ($item->user_id == Auth::user()->id)
+                                        @if (isset(Auth::user()->id) && $item->user_id == Auth::user()->id)
                                             <a target="_blank" href="<?php echo $item->url ?>" class="urlTitle"><?php echo  $item->title?> </a>
                                             <a href="{{url('/Article/Edit',$item->id)}}" class="btn btn-primary btn-xs edit-btn">edit</a>
                                         @else
