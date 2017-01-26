@@ -33,15 +33,19 @@ Route::group(['middleware' => ['web']], function () {
     return view('Article.create');});
     
     
-    Route::post('/Publish', array('as' => 'Publish', 'uses' => 'Article@create_post'));
-    Route::get('/Article/Edit/{id}', array('as' => 'post_edit', 'uses' => 'Article@edit_posts'));
-    Route::post('/Article/Update', array('as' => 'post_update', 'uses' => 'Article@update_post'));
-    Route::get('/Article/Del/{id}', array('as' => 'post_delete', 'uses' => 'Article@del_posts'));
-    Route::post('/Article/Conf', array('as' => 'post_conf', 'uses' => 'Article@conf_posts'));
+    Route::post('/Publish', array('as' => 'Publish', 'uses' => 'ArticleController@create_post'));
+    Route::get('/Article/Edit/{id}', array('as' => 'post_edit', 'uses' => 'ArticleController@edit_posts'));
+    Route::post('/Article/Update', array('as' => 'post_update', 'uses' => 'ArticleController@update_post'));
+    Route::get('/Article/Del/{id}', array('as' => 'post_delete', 'uses' => 'ArticleController@del_posts'));
+    Route::post('/Article/Conf', array('as' => 'post_conf', 'uses' => 'ArticleController@conf_posts'));
     Route::get('/Vote/Up/{id}/{user}/{location}', array('as' => 'vote_up', 'uses' => 'VoteController@up'));
     Route::get('/Vote/Down/{id}/{user}/{location}', array('as' => 'vote_down', 'uses' => 'VoteController@down'));
     Route::get('/Comment/{id}', array('as' => 'show_comments', 'uses' => 'CommentController@index'));
     Route::post('/Comment/Add', array('as' => 'create_comment', 'uses' => 'CommentController@create_comment'));
     Route::get('/Comment/Edit/{id}', array('as' => 'show_comment', 'uses' => 'CommentController@show_comment'));
     Route::post('/Comment/Edit', array('as' => 'update_comment', 'uses' => 'CommentController@update_comment'));
+    Route::get('/Comment/Del/{id}', array('as' => 'del_comment', 'uses' => 'CommentController@delete_comment'));
+    Route::get('/Comment/Del1/{id}', array('as' => 'del_comment_edit', 'uses' => 'CommentController@delete_comment_edit'));
+    Route::post('/Comment/Conf', array('as' => 'conf_delete', 'uses' => 'CommentController@confirm_delete'));
+    Route::post('/Comment/Conf1', array('as' => 'conf_delete_edit', 'uses' => 'CommentController@confirm_delete_edit'));
 });

@@ -15,10 +15,7 @@ use App\Http\Requests;
 
 class CommentController extends Controller
 {
-    // public function __construct(Request $request)
-    // {
-    //     $this->middleware('auth');
-    // }
+    
     public function index($id){
         $id = intval($id);
         $post = DB::select(DB::raw("SELECT posts.* , (select count(comments.user_id) from comments where comments.post_id = posts.id) as post_count_comments,likes.up,likes.down FROM posts LEFT JOIN likes ON likes.user_id = posts.user_id and likes.post_id = posts.id where posts.is_delete = 0 and posts.id=".$id));
@@ -28,6 +25,7 @@ class CommentController extends Controller
         ->select('comments.content as content','users.name as name ',
         'comments.created_at as time','users.id as user_id','comments.id as id')
         ->where("post_id",$id)
+        ->orderby("id","Desc")
         ->get();
         
         if ($post) {
@@ -42,6 +40,8 @@ class CommentController extends Controller
     
     public function create_comment(Request $request)
     {
+        if (!Auth::check())
+            return redirect('/home');
         // $rules=[
         // 'title'=>'required'
         // ];
@@ -52,12 +52,12 @@ class CommentController extends Controller
         // }else {
         $count = Post::select('*')->where('id',input::get('post_id'))->count();
         if($count == 1){
-            $commnet = new Comment();
-            $commnet->post_id = input::get('post_id');
-            $commnet->content = input::get('comment');
-            $commnet->user_id = Auth::user()->id;
-            $commnet->save();
-            return redirect()->route('show_comments', ['id' =>  $commnet->post_id])
+            $comment = new Comment();
+            $comment->post_id = input::get('post_id');
+            $comment->content = input::get('comment');
+            $comment->user_id = Auth::user()->id;
+            $comment->save();
+            return redirect()->route('show_comments', ['id' =>  $comment->post_id])
             ->with('Success', "comment added succesfully.");
         }
         return Redirect::to("/home");
@@ -65,26 +65,80 @@ class CommentController extends Controller
     
     
     public function show_comment($id){
-        $comment = Comment::select('*')->where('id',$id)->first();
+        if (!Auth::check())
+            return redirect('/home');
+        $comment =$this->getDataComment($id);
         if(isset($comment)){
             return view("Comment.edit",['comment'=>$comment]);
         }
         return redirect("/home");
     }
-
+    
     public function update_comment(){
-        $commnet = Comment::select('*')->where('id',input::get('id'))->first();
-        if(isset($commnet)){
-            $commnet->content = input::get('comment');
-            $commnet->update();
-            return redirect()->route('show_comment', ['id' => $commnet->id])
+        if (!Auth::check())
+            return redirect('/home');
+        $comment =$this->getDataComment(input::get('id'));
+        if(isset($comment)){
+            $comment->content = input::get('comment');
+            $comment->update();
+            return redirect()->route('show_comment', ['id' => $comment->id])
             ->with('Success', "comment edited succesfully");
         }
         return Redirect::to("/home");
     }
-
-
-
-
-
+    public function delete_comment($id){
+        if (!Auth::check())
+            return redirect('/home');
+        return  $this->delete($id,'show_comments');
+    }
+    public function delete_comment_edit($id){
+        if (!Auth::check())
+            return redirect('/home');
+        return  $this->delete($id,'show_comment');
+    }
+    private function delete($id,$location){
+        $comment =$this->getDataComment($id);
+        if($location == 'show_comment')
+        $id2 = $id;
+        else
+            $id2 = $comment->post_id;
+        if(isset($comment)){
+            return redirect()->route($location, ['id' => $id2])
+            ->with('confirm', "yes")
+            ->with('id', $id);
+        }
+        return Redirect::to("/home");
+    }
+    
+    public function confirm_delete(){
+        if (!Auth::check())
+            return redirect('/home');
+        return $this->confirm(1);
+    }
+    public function confirm_delete_edit(){
+        if (!Auth::check())
+            return redirect('/home');
+        return $this->confirm(2);
+    }
+    private function confirm($cancel){
+        $comment =$this->getDataComment(input::get('id'));
+        if(input::get('delete')  && isset($comment)){
+            $comment->delete();
+            return redirect()->route('show_comments', ['id' => $comment->post_id ] )
+            ->with('Success', "Comment deleted successfully");
+        }else if (input::get('cancel') && isset($comment)){
+            if($cancel == 1)
+            return redirect()->route('show_comments', ['id' => $comment->post_id ] );
+            else if($cancel == 2)
+            return redirect()->route('show_comment', ['id' => $comment->id ] );
+        }
+        return Redirect::to("/home");
+    }
+    
+    private function  getDataComment($id){
+        return $comment = Comment::select('*')
+        ->where('id',$id)
+        ->where('user_id', Auth::user()->id)
+        ->first();
+    }
 }

@@ -6,19 +6,18 @@
           <a href="{{URL('/home')}}">
             <--- back to overview</a>
         </div>
-        @if(isset($confirm))
+         @if(Session::has('confirm'))
         <div class="bg-danger clearfix">
           Are you sure you want to delete this article?
           <form action="{{ URL::Route('post_conf') }}" method="POST" class="pull-right">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="id" value="<?php echo $Post->id ?>">
+            <input type="hidden" name="id" value="{{$Post->id}}">
             <button name="delete" class="btn btn-danger" value="5">
               <i class="fa fa-btn fa-trash" title="delete"></i> confirm delete
             </button>
             <button name="cancel" class="btn" value="5">
               <i class="fa fa-btn fa-trash" title="delete"></i> cancel
             </button>
-
           </form>
         </div>
         @endif

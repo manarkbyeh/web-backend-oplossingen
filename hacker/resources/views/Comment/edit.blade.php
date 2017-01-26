@@ -2,6 +2,21 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+      @if(Session::has('confirm'))
+        <div class="bg-danger clearfix">
+          Are you sure you want to delete this article?
+          <form action="{{ URL::Route('conf_delete_edit') }}" method="POST" class="pull-right">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="id" value="{{Session::get('id')}}">
+            <button name="delete" class="btn btn-danger" value="5">
+              <i class="fa fa-btn fa-trash" title="delete"></i> confirm delete
+            </button>
+            <button name="cancel" class="btn" value="5">
+              <i class="fa fa-btn fa-trash" title="delete"></i> cancel
+            </button>
+          </form>
+        </div>
+        @endif
      @if($Success = (Session::has('Success')) ? Session::get('Success') : "")
       <div class="bg-success">
         <?php echo $Success; ?>
@@ -13,7 +28,7 @@
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
           Edit comment
-          <a href="http://pascalculator.be/hackernews/public/comments/delete/10" class="btn btn-danger btn-xs edit-btn pull-right">
+          <a href="{{URL::Route('del_comment_edit',$comment->id)}}" class="btn btn-danger btn-xs edit-btn pull-right">
             <i class="fa fa-btn fa-trash" title="delete"></i> delete
           </a>
         </div>
