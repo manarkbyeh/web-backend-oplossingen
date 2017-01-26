@@ -2,10 +2,17 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-    <div class="breadcrumb">
-          <a href="{{URL('/home')}}">
-            <--- back to overview</a>
-        </div>
+      @if (count($errors) > 0)
+            <div class="alert alert-danger">
+            <strong>Whoops! Something went wrong!</strong>
+            <br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
          @if(Session::has('confirm'))
         <div class="bg-danger clearfix">
           Are you sure you want to delete this article?
@@ -21,6 +28,10 @@
           </form>
         </div>
         @endif
+    <div class="breadcrumb">
+          <a href="{{URL('/home')}}">
+            <--- back to overview</a>
+        </div>
         <div class="panel panel-default">
           <div class="panel-heading">Edit Article
             <a href="{{url('Article/Del',$Post->id)}}" class="btn btn-danger btn-xs pull-right">
@@ -33,22 +44,22 @@
               <input type="hidden" name="id" value="<?php echo $Post->id ?>">
 
               <div class="form-group">
-                <label for="article-title" class="col-sm-3 control-label">Title (max. 255 characters)</label>
+                <label for="article-title" class="col-sm-3 control-label">Title  : </label>
                 <div class="col-sm-6">
-                  <input required="required" type="text" name="title" placeholder="<?php echo $Post->title ?>" value="<?php echo $Post->title ?>" class="form-control" />
+                  <input  type="text" name="title" placeholder="<?php echo $Post->title ?>" value="<?php echo $Post->title ?>" class="form-control" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="article-title" class="col-sm-3 control-label">URL (max. 255 characters)</label>
+                <label for="article-title" class="col-sm-3 control-label">URL  : </label>
                 <div class="col-sm-6">
-                  <input required="required" type="text" name="url" placeholder="<?php echo $Post->url ?>" value="<?php echo $Post->url ?>" class="form-control" />
+                  <input  type="text" name="url" placeholder="<?php echo $Post->url ?>" value="<?php echo $Post->url ?>" class="form-control" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="article-url" class="col-sm-3 control-label">Content(max. 255 characters)</label>
+                <label for="article-url" class="col-sm-3 control-label">Content : </label>
 
                 <div class="col-sm-6">
-                  <textarea required="required" placeholder="<?php echo $Post->content ?>" name="content" class="form-control"><?php echo $Post->content ?>
+                  <textarea  placeholder="<?php echo $Post->content ?>" name="content" class="form-control"><?php echo $Post->content ?>
                   </textarea>
                 </div>
               </div>

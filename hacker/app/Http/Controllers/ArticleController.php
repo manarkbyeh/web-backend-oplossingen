@@ -19,11 +19,12 @@ class ArticleController extends Controller
     {
         $this->middleware('auth');
     }
-    
     public function create_post(Request $request)
     {
         $rules=[
-        'title'=>'required'
+        'title' => 'required|max:255',
+        'url' => 'required|max:255|url',
+        'content' => 'required|min:6',
         ];
         $val = Validator::make($request->all(),$rules);
         if($val->fails())
@@ -54,21 +55,31 @@ class ArticleController extends Controller
         }
     }
     
-    public function update_post(){
-        
-        $poo = Post::find(Input::get('id'));
-        $poo->title = input::get('title');
-        $poo->url = input::get('url');
-        $poo->user_id = Auth::user()->id;
-        $poo->content = input::get('content');
-        $poo->update();
-        return Redirect::to("/home")
-        ->with('Success','article "'.input::get('title').'" edited succesfully' );
+    public function update_post(Request $request){
+        $rules=[
+        'title' => 'required|max:255',
+        'url' => 'required|max:255|url',
+        'content' => 'required|min:6',
+        ];
+        $val = Validator::make($request->all(),$rules);
+        if($val->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($val);
+        }else {
+            $poo = Post::find(Input::get('id'));
+            $poo->title = input::get('title');
+            $poo->url = input::get('url');
+            $poo->user_id = Auth::user()->id;
+            $poo->content = input::get('content');
+            $poo->update();
+            return Redirect::to("/home")
+            ->with('Success','article "'.input::get('title').'" edited succesfully' );
+        }
     }
     public function del_posts($id) {
         $Post = Post::find($id);
         if ($Post) {
-             return redirect()->route('post_edit', ['id' => $id])
+            return redirect()->route('post_edit', ['id' => $id])
             ->with('confirm', "yes");
         } else {
             return Redirect::to("/home");
@@ -83,7 +94,7 @@ class ArticleController extends Controller
             return Redirect::to("/home")
             ->with('Success','Article "'.$post->title.'" deleted successfully' );
         }else if (input::get('cancel')){
-           return redirect()->route('post_edit', ['id' => $post->id ] );
+            return redirect()->route('post_edit', ['id' => $post->id ] );
         }
     }
 }

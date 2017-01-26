@@ -42,25 +42,26 @@ class CommentController extends Controller
     {
         if (!Auth::check())
             return redirect('/home');
-        // $rules=[
-        // 'title'=>'required'
-        // ];
-        // $val = Validator::make($request->all(),$rules);
-        // if($val->fails())
-        // {
-        //     return redirect()->back()->withInput()->withErrors($val);
-        // }else {
-        $count = Post::select('*')->where('id',input::get('post_id'))->count();
-        if($count == 1){
-            $comment = new Comment();
-            $comment->post_id = input::get('post_id');
-            $comment->content = input::get('comment');
-            $comment->user_id = Auth::user()->id;
-            $comment->save();
-            return redirect()->route('show_comments', ['id' =>  $comment->post_id])
-            ->with('Success', "comment added succesfully.");
+        $rules=[
+        'comment' => 'required|max:255'
+        ];
+        $val = Validator::make($request->all(),$rules);
+        if($val->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($val);
+        }else {
+            $count = Post::select('*')->where('id',input::get('post_id'))->count();
+            if($count == 1){
+                $comment = new Comment();
+                $comment->post_id = input::get('post_id');
+                $comment->content = input::get('comment');
+                $comment->user_id = Auth::user()->id;
+                $comment->save();
+                return redirect()->route('show_comments', ['id' =>  $comment->post_id])
+                ->with('Success', "comment added succesfully.");
+            }
+            return Redirect::to("/home");
         }
-        return Redirect::to("/home");
     }
     
     
@@ -74,17 +75,26 @@ class CommentController extends Controller
         return redirect("/home");
     }
     
-    public function update_comment(){
+    public function update_comment(Request $request){
         if (!Auth::check())
             return redirect('/home');
-        $comment =$this->getDataComment(input::get('id'));
-        if(isset($comment)){
-            $comment->content = input::get('comment');
-            $comment->update();
-            return redirect()->route('show_comment', ['id' => $comment->id])
-            ->with('Success', "comment edited succesfully");
+        $rules=[
+        'comment' => 'required|max:255'
+        ];
+        $val = Validator::make($request->all(),$rules);
+        if($val->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($val);
+        }else {
+            $comment =$this->getDataComment(input::get('id'));
+            if(isset($comment)){
+                $comment->content = input::get('comment');
+                $comment->update();
+                return redirect()->route('show_comment', ['id' => $comment->id])
+                ->with('Success', "comment edited succesfully");
+            }
+            return Redirect::to("/home");
         }
-        return Redirect::to("/home");
     }
     public function delete_comment($id){
         if (!Auth::check())
